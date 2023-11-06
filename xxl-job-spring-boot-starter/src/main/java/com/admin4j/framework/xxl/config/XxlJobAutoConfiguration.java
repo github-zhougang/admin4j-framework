@@ -13,13 +13,13 @@ import org.springframework.util.StringUtils;
  * @Date 2021/7/7 11:29
  */
 @Import(XxlJobProperties.class)
+@ConditionalOnProperty(prefix = XxlJobProperties.PREFIX, name = "enable", matchIfMissing = true)
 public class XxlJobAutoConfiguration {
 
     @Autowired
     private XxlJobProperties xxlJobProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = XxlJobProperties.PREFIX, name = "enable", matchIfMissing = true)
     public XxlJobSpringExecutor xxlJobExecutor() {
 
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
