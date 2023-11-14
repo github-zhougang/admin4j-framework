@@ -22,6 +22,6 @@ public @interface SignatureField {
      *
      * @return
      */
-    int order() default 0;
+    int order() default Integer.MIN_VALUE;
 
 }
