@@ -9,6 +9,7 @@
         <version>0.9.0</version>
     </parent>
 
+    <groupId>com.admin4j.lock</groupId>
     <artifactId>admin4j-lock</artifactId>
     <version>${admin4j-lock.version}</version>
     <packaging>pom</packaging>

@@ -7,8 +7,9 @@
         <version>${revision}</version>
     </parent>
 
-    <version>1.0.0</version>
+    <groupId>com.admin4j.framework</groupId>
     <artifactId>xss-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>xss-spring-boot-starter</name>
