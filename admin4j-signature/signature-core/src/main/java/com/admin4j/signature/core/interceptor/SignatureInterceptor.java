@@ -1,8 +1,8 @@
-package com.admin4j.framework.signature.interceptor;
+package com.admin4j.signature.core.interceptor;
 
-import com.admin4j.framework.signature.SignatureService;
-import com.admin4j.framework.signature.annotation.Signature;
-import com.admin4j.framework.signature.exception.SignatureException;
+import com.admin4j.signature.core.SignatureService;
+import com.admin4j.signature.core.annotation.Signature;
+import com.admin4j.signature.core.exception.SignatureException;
 import com.admin4j.spring.util.SpringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

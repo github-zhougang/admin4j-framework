@@ -1,4 +1,4 @@
-package com.admin4j.framework.signature.properties;
+package com.admin4j.signature.core.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

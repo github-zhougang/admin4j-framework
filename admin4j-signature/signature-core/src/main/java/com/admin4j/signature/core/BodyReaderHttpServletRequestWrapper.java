@@ -1,4 +1,4 @@
-package com.admin4j.framework.signature;
+package com.admin4j.signature.core;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

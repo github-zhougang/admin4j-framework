@@ -4,7 +4,7 @@ import com.admin4j.common.exception.handler.AbstractExceptionHandler;
 import com.admin4j.common.pojo.IResponse;
 import com.admin4j.common.pojo.ResponseEnum;
 import com.admin4j.common.pojo.SimpleResponse;
-import com.admin4j.framework.signature.exception.SignatureException;
+import com.admin4j.signature.core.exception.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

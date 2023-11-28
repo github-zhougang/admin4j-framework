@@ -1,4 +1,4 @@
-package com.admin4j.framework.signature.annotation;
+package com.admin4j.signature.core.annotation;
 
 import java.lang.annotation.*;
 

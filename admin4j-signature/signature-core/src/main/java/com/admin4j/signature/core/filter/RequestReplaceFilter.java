@@ -1,6 +1,6 @@
-package com.admin4j.framework.signature.filter;
+package com.admin4j.signature.core.filter;
 
-import com.admin4j.framework.signature.BodyReaderHttpServletRequestWrapper;
+import com.admin4j.signature.core.BodyReaderHttpServletRequestWrapper;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

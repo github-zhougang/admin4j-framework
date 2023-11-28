@@ -1,7 +1,7 @@
-package com.admin4j.framework.signature;
+package com.admin4j.signature.core;
 
-import com.admin4j.framework.signature.annotation.Signature;
-import com.admin4j.framework.signature.properties.SignatureProperties;
+import com.admin4j.signature.core.annotation.Signature;
+import com.admin4j.signature.core.properties.SignatureProperties;
 import com.alibaba.fastjson2.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

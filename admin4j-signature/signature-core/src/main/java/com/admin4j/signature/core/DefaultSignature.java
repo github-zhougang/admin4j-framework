@@ -1,6 +1,6 @@
-package com.admin4j.framework.signature;
+package com.admin4j.signature.core;
 
-import com.admin4j.framework.signature.properties.SignatureProperties;
+import com.admin4j.signature.core.properties.SignatureProperties;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**

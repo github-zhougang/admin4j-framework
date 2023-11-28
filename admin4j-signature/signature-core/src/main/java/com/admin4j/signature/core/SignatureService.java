@@ -1,6 +1,6 @@
-package com.admin4j.framework.signature;
+package com.admin4j.signature.core;
 
-import com.admin4j.framework.signature.annotation.Signature;
+import com.admin4j.signature.core.annotation.Signature;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

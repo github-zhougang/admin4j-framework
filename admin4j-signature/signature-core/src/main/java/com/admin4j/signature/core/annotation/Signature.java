@@ -1,7 +1,7 @@
-package com.admin4j.framework.signature.annotation;
+package com.admin4j.signature.core.annotation;
 
-import com.admin4j.framework.signature.DefaultSignature;
-import com.admin4j.framework.signature.SignatureService;
+import com.admin4j.signature.core.DefaultSignature;
+import com.admin4j.signature.core.SignatureService;
 
 import java.lang.annotation.*;
 
