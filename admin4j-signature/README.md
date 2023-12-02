@@ -92,7 +92,7 @@ public class SignatureController {
              "uri": "/user",
              "timestamp": 1701521859352,
              "nonce": "1730934251223891968",
-             "body": "{"password":"1","user":{"1":"xx","2":"xx","area":"浦东新区","data":{"1":"xx","100":"xx","2":"xx","3":"xx","99":"xx"},"name":"张三","province":"上海市","sex":"男"},"username":"xiaoming"}",
+             "body": "{"password":"1","user":{"1":"xx","2":"xx","area":"浦东新区","data":{"1":"xx","100":"xx","2":"xx","3":"xx","99":"xx"},"name":"张三","province":"上海市","sex":"男"},"username":"xiaoming"}"
          }
          appId：应用ID
          uri：可能包含动态参数，该字段只需参与签名，无需传递；签名忽略此字段：@Signature(uri = @SignatureField(enable = false))

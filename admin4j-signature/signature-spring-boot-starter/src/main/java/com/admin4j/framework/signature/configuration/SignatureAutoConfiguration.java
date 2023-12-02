@@ -1,6 +1,7 @@
 package com.admin4j.framework.signature.configuration;
 
-import com.admin4j.framework.signature.SignatureGlobalExceptionHandler;import com.admin4j.framework.signature.core.DefaultSignatureStrategy;
+import com.admin4j.framework.signature.SignatureGlobalExceptionHandler;
+import com.admin4j.framework.signature.core.DefaultSignatureStrategy;
 import com.admin4j.framework.signature.core.SignatureApi;
 import com.admin4j.framework.signature.core.filter.CacheRequestBodyFilter;
 import com.admin4j.framework.signature.core.interceptor.SignatureInterceptor;
