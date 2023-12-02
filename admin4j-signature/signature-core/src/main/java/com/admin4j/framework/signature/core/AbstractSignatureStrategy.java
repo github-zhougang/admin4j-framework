@@ -2,6 +2,7 @@ package com.admin4j.framework.signature.core;
 
 import com.admin4j.framework.signature.core.annotation.Signature;
 import com.admin4j.framework.signature.core.properties.SignatureProperties;
+import com.admin4j.framework.signature.core.util.SignatureUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
@@ -140,9 +141,11 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         if (!CollectionUtils.isEmpty(request.getParameterMap())) {
             Map<String, String[]> requestParams = request.getParameterMap();
             //获取GET请求参数,以键值对形式保存
+            SortedMap<String, String> paramMap = new TreeMap<>();
             for (Map.Entry<String, String[]> entry : requestParams.entrySet()) {
-                sortedMap.put(entry.getKey(), entry.getValue()[0]);
+                paramMap.put(entry.getKey(), entry.getValue()[0]);
             }
+            sortedMap.put("param", JSON.toJSONString(paramMap));
         }
 
         CacheHttpServletRequestWrapper requestWrapper = new CacheHttpServletRequestWrapper(request);
@@ -150,18 +153,15 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         String body = new String(requestWrapper.getBody(), StandardCharsets.UTF_8);
         if (StringUtils.isNotBlank(body)) {
             // body可能为JSON对象或JSON数组
-            if (body.trim().startsWith("{")) {
+            if (JSON.isValidObject(body)) {
                 JSONObject jsonObj = JSONObject.parseObject(body);
                 // 获取POST请求的JSON参数,以键值对形式保存
-                sortedMap.put("body", JSON.toJSONString(convertJsonObjToSortedMap(jsonObj)));
-            } else {
-                List<SortedMap<String, String>> list = new ArrayList<>();
+                sortedMap.put("body", JSON.toJSONString(SignatureUtil.traverseMap(jsonObj)));
+            } else if (JSON.isValidArray(body)) {
                 JSONArray jsonArray = JSONArray.parseArray(body);
-                for (Object obj : jsonArray) {
-                    JSONObject jsonObj = (JSONObject) obj;
-                    list.add(convertJsonObjToSortedMap(jsonObj));
-                }
-                sortedMap.put("body", JSON.toJSONString(list));
+                sortedMap.put("body", JSON.toJSONString(SignatureUtil.traverseList(jsonArray)));
+            } else {
+                sortedMap.put("body", body);
             }
         }
         return sortedMap;
@@ -183,24 +183,5 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         // 结尾拼接应用密钥 appSecret
         plainText.append(appSecret);
         return plainText.toString();
-    }
-
-    /**
-     * JSON对象按key排序，value转字符串
-     * @param data
-     * @return
-     */
-    private static SortedMap<String, String> convertJsonObjToSortedMap(JSONObject data) {
-        SortedMap<String, String> sortedMap = new TreeMap<>();
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            Object value = entry.getValue();
-            // 判断value的类型
-            if (value instanceof JSONArray || value instanceof JSONObject) {
-                sortedMap.put(entry.getKey(), JSON.toJSONString(value));
-            } else {
-                sortedMap.put(entry.getKey(), String.valueOf(value));
-            }
-        }
-        return sortedMap;
     }
 }
