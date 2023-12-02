@@ -1,4 +1,4 @@
-package com.admin4j.signature.core;
+package com.admin4j.framework.signature.core;
 
 import lombok.Data;
 

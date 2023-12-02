@@ -1,4 +1,4 @@
-package com.admin4j.signature.core.exception;
+package com.admin4j.framework.signature.core.exception;
 
 /**
  * @author zhougang
