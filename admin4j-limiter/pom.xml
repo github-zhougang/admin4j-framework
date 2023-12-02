@@ -8,7 +8,7 @@
     </parent>
 
     <groupId>com.admin4j.limiter</groupId>
-    <artifactId>limiter</artifactId>
+    <artifactId>admin4j-limiter</artifactId>
     <version>${admin4j-limiter.version}</version>
     <packaging>pom</packaging>
 
