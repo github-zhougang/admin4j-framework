@@ -31,5 +31,10 @@ public class CorsProperties {
     /**
      * 是否允许客户端带cookie
      */
-    private boolean allowCredentials = true;
+    private boolean allowCredentials = false;
+
+    /**
+     * 有效路径
+     */
+    private String uriPattern = "/**";
 }

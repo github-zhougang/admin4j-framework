@@ -1,5 +1,6 @@
 package com.admin4j.spring.util;
 
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.expression.MethodBasedEvaluationContext;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
@@ -20,21 +21,35 @@ import java.util.Map;
  */
 public class SpelUtil {
 
+    /**
+     * 是一种基于本地变量表的参数解析器，依赖于编译时的选项，可能无法在所有情况下获取参数名称
+     */
+    private static final LocalVariableTableParameterNameDiscoverer U = new LocalVariableTableParameterNameDiscoverer();
+    // 使用SPEL进行key的解析
+    @Getter
+    private static final ExpressionParser EL_PARSER = new SpelExpressionParser();
+
     private SpelUtil() {
     }
 
-    private static final LocalVariableTableParameterNameDiscoverer U = new LocalVariableTableParameterNameDiscoverer();
-    //使用SPEL进行key的解析
-    private static final ExpressionParser EL_PARSER = new SpelExpressionParser();
-
-
+    /**
+     * el表达式解析
+     *
+     * @param spel   解析值
+     * @param method 方法
+     * @param args   参数
+     * @return
+     */
     public static String parse(String spel, Method method, Object[] args) {
-        //获取被拦截方法参数名列表(使用Spring支持类库)
+        if (StringUtils.isBlank(spel)) {
+            return null;
+        }
+        // 获取被拦截方法参数名列表(使用Spring支持类库)
         String[] paraNameArr = U.getParameterNames(method);
 
-        //SPEL上下文
+        // SPEL上下文
         StandardEvaluationContext context = new StandardEvaluationContext();
-        //把方法参数放入SPEL上下文中
+        // 把方法参数放入SPEL上下文中
         if (paraNameArr != null) {
             for (int i = 0; i < paraNameArr.length; i++) {
                 context.setVariable(paraNameArr[i], args[i]);
@@ -44,7 +59,7 @@ public class SpelUtil {
         try {
             return EL_PARSER.parseExpression(spel).getValue(context, String.class);
         } catch (ParseException | SpelEvaluationException e) {
-            return spel;
+            throw new RuntimeException(e);
         }
     }
 
@@ -63,12 +78,12 @@ public class SpelUtil {
         } else if (!spel.contains("#")) {
             return parse(spel, method, args);
         }
-        //获取被拦截方法参数名列表(使用Spring支持类库)
+        // 获取被拦截方法参数名列表(使用Spring支持类库)
         String[] paraNameArr = U.getParameterNames(method);
 
-        //SPEL上下文
+        // SPEL上下文
         StandardEvaluationContext context = new MethodBasedEvaluationContext(rootObject, method, args, U);
-        //把方法参数放入SPEL上下文中
+        // 把方法参数放入SPEL上下文中
         if (paraNameArr != null) {
             for (int i = 0; i < paraNameArr.length; i++) {
                 context.setVariable(paraNameArr[i], args[i]);
